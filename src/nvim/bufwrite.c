@@ -715,13 +715,14 @@ static int get_fileinfo(buf_T *buf, char *fname, bool overwriting, bool forceit,
       return FAIL;
     }
 
-    // If 'forceit' is false, check if the timestamp hasn't changed since reading the file.
-    if (overwriting && !forceit) {
-      int retval = check_mtime(buf, file_info_old);
-      if (retval == FAIL) {
-        return FAIL;
-      }
-    }
+    // Removed becuase it causes raise conditions with files hosted on SMB shares:
+    // // If 'forceit' is false, check if the timestamp hasn't changed since reading the file.
+    // if (overwriting && !forceit) {
+    //   int retval = check_mtime(buf, file_info_old);
+    //   if (retval == FAIL) {
+    //     return FAIL;
+    //   }
+    // }
   }
   return OK;
 }
